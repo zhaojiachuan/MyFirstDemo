@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "antd/dist/antd.css";
-import { Input,Button } from "antd";
+import { Input, Button ,message} from "antd";
 import "./index.scss";
 
 export default class index extends Component {
@@ -39,10 +39,21 @@ export default class index extends Component {
     const n = this.state.needTxt;
     const a = this.state.needAge;
     axios
-      .put("http://localhost:80/api/put", { name: n, age: a })
+      .post("http://localhost:80/api/post", { username: n, password: a })
       .then((res) => {
-        this.getMes();
+        debugger
+        if(res.data.status === 0){
+
+          this.props.history.push(`/news`)
+        }
+        else {
+          message.error(res.data.msg)
+        }
       });
+  };
+
+  login = () => {
+    // this.props.history.push(`/news`)
   };
 
   render() {
@@ -58,22 +69,44 @@ export default class index extends Component {
           <div className="container2">
             <div className="login">欢迎登录</div>
             {/* </> */}
-            <div style={{display: 'flex',flexDirection: 'column',marginTop:'12%',marginLeft:'20%'}}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                marginTop: "12%",
+                marginLeft: "20%",
+              }}
+            >
               <div>
                 用户名：
-                <Input style={{ width: "50%" }} />
+                <Input
+                  style={{ width: "50%" }}
+                  onChange={(e) => this.changeName(e)}
+                />
               </div>
-              <div style={{marginTop:'5%',marginLeft:'3%'}}>
+              <div style={{ marginTop: "5%", marginLeft: "3%" }}>
                 密码：
-                <Input style={{ width: "52%" }} />
+                <Input
+                  style={{ width: "52%" }}
+                  onChange={(e) => this.changeAge(e)}
+                />
               </div>
             </div>
-            <div style={{display: 'flex',flexDirection: 'row',marginTop:'12%',marginLeft:'23%'}}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                marginTop: "12%",
+                marginLeft: "23%",
+              }}
+            >
               <div>
-              <Button className="btn">登录</Button>
+                <Button className="btn" onClick={this.postMsg}>
+                  登录
+                </Button>
               </div>
-              <div style={{marginLeft:'27%'}}>
-              <Button style={{width: "140%"}}>清空</Button>
+              <div style={{ marginLeft: "27%" }}>
+                <Button style={{ width: "140%" }}>注册</Button>
               </div>
             </div>
             <div className="title"></div>
