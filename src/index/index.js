@@ -63,7 +63,7 @@ export default class index extends Component {
           <div className="container1">
             <div className="header">💴</div>
             <div className="header">我的钱去哪了</div>
-            <div className="littleHeader">完成冤种金钱交互与交付记录框架</div>
+            <div className="littleHeader">完成冤种金钱交付记录框架</div>
             <div className="title"></div>
           </div>
           <div className="container2">
