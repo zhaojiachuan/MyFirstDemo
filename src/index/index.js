@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "antd/dist/antd.css";
+import 'antd/dist/antd.min.css'
 import { Input, Button ,message} from "antd";
 import "./index.scss";
 
